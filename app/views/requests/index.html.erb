@@ -1,2 +1,7 @@
 <%= action_title "Requests" %>
 
+<ul>
+  <% @requests.each do |request| %>
+    <li><%= request.description %></li>
+  <% end %>
+</ul>
