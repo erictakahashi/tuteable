@@ -44,3 +44,7 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'devise'
+
+gem 'bootstrap-sass'
+
+gem 'cancan'

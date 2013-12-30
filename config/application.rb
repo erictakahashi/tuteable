@@ -61,5 +61,8 @@ module Tuteable
 
     # Devise configuration
     config.assets.initialize_on_precompile = false
+
+    # Bootstrap
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end
