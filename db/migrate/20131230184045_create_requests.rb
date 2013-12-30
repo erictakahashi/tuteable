@@ -2,7 +2,7 @@ class CreateRequests < ActiveRecord::Migration
   def change
     create_table :requests do |t|
       t.string :category
-      t.string :description
+      t.text :description
       t.float :sessiontime
       t.string :subcategory
       t.string :subject
