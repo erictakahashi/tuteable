@@ -1,0 +1,11 @@
+<%= action_title "Request" %>
+
+<%= label_tag :request_id %>
+<p id="request_id"><%= @request.id %></p>
+<%= label_tag :description %>
+<p id="category"><%= @request.category %></p>
+<%= label_tag :address %>
+<p id="description"><%= @request.description %></p>
+
+<%= link_to "Edit", edit_request_path(@request) %>
+<%= link_to "Back", request_path %>
