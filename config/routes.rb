@@ -1,9 +1,9 @@
 Tuteable::Application.routes.draw do
   devise_for :admins
 
-  resources 'requests'
+  resources :requests
 
-  match '/requests' => 'requests#index'
+  #match '/requests' => 'requests#index'
 
   root :to => "home#index"
 
