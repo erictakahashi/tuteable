@@ -2,10 +2,16 @@
 
 <%= label_tag :request_id %>
 <p id="request_id"><%= @request.id %></p>
-<%= label_tag :description %>
+<%= label_tag :category %>
 <p id="category"><%= @request.category %></p>
-<%= label_tag :address %>
+<%= label_tag :description %>
 <p id="description"><%= @request.description %></p>
 
 <%= link_to "Edit", edit_request_path(@request) %>
 <%= link_to "Back", request_path %>
+<%= link_to "New Chat", new_request_chat_path(@request) %>
+
+<h2>Chats</h2>
+<% for chat in @request.chats %>
+  <p><%= chat.content %></p>
+<% end %>

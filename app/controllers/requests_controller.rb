@@ -5,6 +5,8 @@ class RequestsController < ApplicationController
 
   def show
     @request = Request.find(params[:id])
+
+    #@chats = Chat.order :id
   end
 
   def new

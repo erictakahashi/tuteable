@@ -1,0 +1,11 @@
+<%= action_title "Chat" %>
+
+<%= label_tag :chat_id %>
+<p id="request_id"><%= @chat.id %></p>
+<%= label_tag :category %>
+<p id="category"><%= @chat.category %></p>
+<%= label_tag :content %>
+<p id="description"><%= @chat.content %></p>
+
+<%= link_to "Edit", edit_request_chat_path(@request, @chat) %>
+<%= link_to "Back", request_chats_path(@request) %>

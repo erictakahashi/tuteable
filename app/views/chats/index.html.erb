@@ -1,0 +1,9 @@
+<%= action_title "Chats" %>
+
+<%= link_to "New Chat", new_request_chat_path(@request) %>
+
+<ul>
+  <% @request.chats.each do |chat| %>
+    <li><%= chat.content %></li>
+  <% end %>
+</ul>

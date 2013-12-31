@@ -1,7 +1,9 @@
 Tuteable::Application.routes.draw do
   devise_for :admins
 
-  resources :requests
+  resources :requests do
+    resources :chats
+  end
 
   #match '/requests' => 'requests#index'
 

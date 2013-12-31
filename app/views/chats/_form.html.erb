@@ -1,0 +1,13 @@
+<%= form_for([@request, @chat]) do |f| %>
+  <p>
+    <%= f.label :category %>
+    <%= f.text_field :category %>
+  </p>
+  <p>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </p>
+  <p>
+    <%= f.submit "Send" %>
+  </p>
+<% end %>
