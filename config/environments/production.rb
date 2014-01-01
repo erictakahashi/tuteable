@@ -66,5 +66,5 @@ Tuteable::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Devise configuration
-  config.action_mailer.default_url_options = { :host => 'tuteable.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'http://tuteable-project.herokuapp.com/' }
 end

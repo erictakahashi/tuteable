@@ -1,6 +1,7 @@
 class ChatsController < ApplicationController
   before_filter :authenticate_admin!
   before_filter :get_request
+  load_and_authorize_resource
 
   def index
     #@chats = Chat.all
