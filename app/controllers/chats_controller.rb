@@ -1,5 +1,5 @@
 class ChatsController < ApplicationController
-  
+  before_filter :authenticate_admin!
   before_filter :get_request
 
   def index
