@@ -7,7 +7,8 @@ Tuteable::Application.routes.draw do
 
   #match '/requests' => 'requests#index'
 
-  root :to => "home#index"
+  #root :to => "home#index"
+  root :to => "requests#index"
 
   
   

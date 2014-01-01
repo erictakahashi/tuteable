@@ -1,9 +1,13 @@
 <%= action_title "Requests" %>
 
-<%= link_to "New Request", new_request_path %>
+<% @requests.each do |request| %>
+  <%= link_to(request, :class => "single-request") do %>
+    <%= request.description %>
 
-<ul>
-  <% @requests.each do |request| %>
-    <li><%= request.description %></li>
+    <div class="container">
+      Chats: <%= request.chats.count %>
+    </div>
   <% end %>
-</ul>
+<% end %>
+
+<%= link_to "New Request", new_request_path, class: "new-request-button" %>
