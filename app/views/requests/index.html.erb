@@ -3,7 +3,7 @@
 <% @requests.each do |request| %>
   <%= link_to(request, :class => "single-request") do %>
     <h3 class="request-title">*<%= request.title %>*</h3>
-    <p class="user-request-creator"><%= request.user_id %></p>
+    <p class="user-request-creator"><%= Admin.select(:email).where("id = request.user_id") %></p>
     <p class="request-date"><%= request.created_at %></p>
     <p><%= request.description %></p>
 
