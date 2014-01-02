@@ -6,6 +6,27 @@ body {
   background: rgb(241,240,235);
 }
 
+input,
+textarea {
+  width: 100%;
+  border: 0;
+  background: rgb(247,247,247);
+  color: rgb(151,157,164);
+}
+
+input {
+  height: 50px;
+}
+
+textarea {
+  height: 100px;
+}
+
+input[type="submit"] {
+  background: rgb(102,174,243);
+  color: white;
+}
+
 .top-bar {
   height: 10px;
 
@@ -64,16 +85,41 @@ body {
   .single-request {
     display: inline-block;
     width: 100%;
-    border-top: 1px solid rgb(73,92,125);
     border-bottom: 1px solid rgb(73,92,125);
     border-radius: 0;
-    padding: 20px;
+    padding: 30px 20px;
     text-align: left;
     text-decoration: none;
+
+    p {
+      margin: 10px 0;
+    }
+
+    .request-title {
+      margin: 0;
+      color: rgb(230,126,34);
+    }
+
+    .user-request-creator {
+      margin: 2px 0;
+      font-weight: 500;
+    }
+
+    .request-date {
+      color: rgb(102,174,243);
+    }
   }
 
   .single-request:hover {
-    background: rgba(102,174,243,0.5);
+    background: rgb(240,247,254);
+
+    p {
+      color: black;
+    }
+
+    .request-date {
+      color: rgb(102,174,243);
+    }
   }
 
   .new-request-button {
@@ -88,6 +134,43 @@ body {
 
   .show-single-request {
     padding: 20px;
+
+    p {
+      margin: 10px 0;
+
+      label {
+        margin: 0;
+      }
+    }
+
+    .request-title {
+      margin: 0;
+      color: rgb(230,126,34);
+    }
+
+    .user-request-creator {
+      margin: 2px 0;
+      font-weight: 500;
+    }
+
+    .single-chat {
+      display: inline-block;
+      width: 100%;
+      border: 1px solid rgb(102,174,243);
+      padding: 0 10px;
+    }
+
+    .single-chat:hover {
+      background: rgb(240,247,254);
+
+      p {
+        color: black;
+      }
+    }
+
+    .single-message {
+      color: rgb(151,157,164);
+    }
   }
 }
 

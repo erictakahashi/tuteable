@@ -1,26 +1,28 @@
 <%= action_title "Chat" %>
 
-<%= label_tag :chat_id %>
-<p id="request_id"><%= @chat.id %></p>
-<%= label_tag :category %>
-<p id="category"><%= @chat.category %></p>
-<%= label_tag :content %>
-<p id="description"><%= @chat.content %></p>
+<div class="show-single-request ">
+  <%= link_to "Edit", edit_request_chat_path(@request, @chat) %>
+  <%= link_to "Back", request_chats_path(@request) %>
 
-<%= link_to "Edit", edit_request_chat_path(@request, @chat) %>
-<%= link_to "Back", request_chats_path(@request) %>
+  <p id="description" class="single-message"><b>Sent <%= time_ago_in_words(@chat.created_at) %> days ago:</b> <%= @chat.content %></p>
 
-<% for message in @chat.messages %>
-  <p><%= message.content %></p>
-<% end %>
+  <% @chat.messages.each do |message| %>
+    <p class="single-message"><b>Sent <%= time_ago_in_words(@chat.created_at) %> days ago:</b> <%= message.content %></p>
+  <% end %>
 
-<%= form_for([@request, @chat, @message]) do |f| %>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
-  </div>
-    <%= f.hidden_field :user_id, :value => current_admin.id %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <br>
+
+  <%= form_for([@request, @chat, @message]) do |f| %>
+    <div class="field">
+      <%= f.text_area :content, placeholder: 'Your message' %>
+    </div>
+      <%= f.hidden_field :user_id, :value => current_admin.id %>
+    <div class="actions">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4"><%= f.submit "SEND" %></div>
+      </div>
+    </div>
+  <% end %>
+</div>

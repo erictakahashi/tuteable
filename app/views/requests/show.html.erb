@@ -1,21 +1,23 @@
 <%= action_title "Request" %>
 
 <div class="show-single-request">
-  <%= label_tag :request_id %>
-  <p id="request_id"><%= @request.id %></p>
-  <%= label_tag :category %>
-  <p id="category"><%= @request.category %></p>
-  <%= label_tag :description %>
+  <h3 id="title" class="request-title">*<%= @request.title %>*</h3>
+  <p class="user-request-creator"><%= @request.user_id %></p>
+  <p id="category"><%= label_tag :category %>: <%= @request.category %></p>
   <p id="description"><%= @request.description %></p>
 
-  <%= link_to "Edit Request", edit_request_path(@request) %><br>
-  <%= link_to "Back", requests_path %><br><br><br>
+  <p><%= link_to "Edit Request", edit_request_path(@request) %></p>
+  <p><%= link_to "Back", requests_path %></p><br>
   
-
   <h4>Chats
-    <%= link_to "New Chat", new_request_chat_path(@request), class: "new-request-button" %>
+    <% if current_admin.role == "tutor" %>
+      <%= link_to "New Chat", new_request_chat_path(@request), class: "new-request-button" %>
+    <% end %>
   </h4>
   <% for chat in @request.chats %>
-    <p><%= chat.content %></p>
+    <%= link_to([@request, chat], :class => "single-chat") do %>
+      <p>Tutor: <%= chat.user_id %></p>
+      <p>Number of messages: <%= chat.messages.count %></p>
+    <% end %>
   <% end %>
 </div>
