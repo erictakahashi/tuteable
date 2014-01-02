@@ -1,83 +1,56 @@
 class MessagesController < ApplicationController
-  # GET /messages
-  # GET /messages.json
+  before_filter :authenticate_admin!
+  before_filter :get_chat
+  load_and_authorize_resource
+
   def index
-    @messages = Message.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @messages }
-    end
+    #@messages = Message.all
+    @messages = @chat.messages
   end
 
-  # GET /messages/1
-  # GET /messages/1.json
   def show
-    @message = Message.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @message }
-    end
+    #@message = Message.find(params[:id])
+    @message = @chat.messages.find(params[:id])
   end
 
-  # GET /messages/new
-  # GET /messages/new.json
   def new
-    @message = Message.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @message }
-    end
+    #@message = Message.new
+    @chat = Chat.find(params[:chat_id])
+    @message = @chat.messages.build
   end
 
-  # GET /messages/1/edit
   def edit
-    @message = Message.find(params[:id])
+    #@message = Message.find(params[:id])
+    @message = @chat.messages.find(params[:id])
   end
 
-  # POST /messages
-  # POST /messages.json
   def create
-    @message = Message.new(params[:message])
+    #@message = Message.new(params[:message])
+    @message = @chat.messages.build(params[:message])
 
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render json: @message, status: :created, location: @message }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+    if @message.save
+      #redirect_to request_chats_url(@request)
+      redirect_to [@request, @chat]
+    else
+      render action: "new"
     end
   end
 
-  # PUT /messages/1
-  # PUT /messages/1.json
   def update
-    @message = Message.find(params[:id])
+    #@message = Message.find(params[:id])
+    @message = @chat.messages.find(params[:id])
 
-    respond_to do |format|
-      if @message.update_attributes(params[:message])
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+    if @message.update_attributes(params[:message])
+      #redirect_to request_chats_url(@request)
+      redirect_to [@request, @chat]
+    else
+      render action: "edit"
     end
   end
 
-  # DELETE /messages/1
-  # DELETE /messages/1.json
-  def destroy
-    @message = Message.find(params[:id])
-    @message.destroy
-
-    respond_to do |format|
-      format.html { redirect_to messages_url }
-      format.json { head :no_content }
-    end
+  private
+  def get_chat
+    @request = Request.find(params[:request_id])
+    @chat = @request.chats.find(params[:chat_id])
   end
 end

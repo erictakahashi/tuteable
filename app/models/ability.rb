@@ -10,10 +10,8 @@ class Ability
       can :read, :all
       can :create, Request
       can :update, Request
-
-      #if Chat.count > 1
-      #  can :create, Chat
-      #end
+      can :create, Message
+      can :update, Message
     end
 
     # Define abilities for the passed in user here. For example:
