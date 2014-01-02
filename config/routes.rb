@@ -1,4 +1,7 @@
 Tuteable::Application.routes.draw do
+  resources :messages
+
+
   devise_for :admins
 
   resources :requests do
