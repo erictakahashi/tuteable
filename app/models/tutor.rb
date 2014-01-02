@@ -1,4 +1,4 @@
-class Tutors < ActiveRecord::Base
+class Tutor < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :requests
