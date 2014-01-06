@@ -2,7 +2,7 @@
 
 <div class="show-single-request">
   <h3 id="title" class="request-title">*<%= @request.title %>*</h3>
-  <p class="user-request-creator"><%= @request.user_id %></p>
+  <p class="user-request-creator"><% @request_user_name = Admin.find(@request.user_id) %><%= @request_user_name[:email] %></p>
   <p id="category"><%= label_tag :category %>: <%= @request.category %></p>
   <p id="description"><%= @request.description %></p>
 
@@ -16,7 +16,7 @@
   </h4>
   <% for chat in @request.chats %>
     <%= link_to([@request, chat], :class => "single-chat") do %>
-      <p>Tutor: <%= chat.user_id %></p>
+      <p>Tutor: <% @chat_user_name = Admin.find(chat.user_id) %><%= @chat_user_name[:email] %></p>
       <p>Number of messages: <%= chat.messages.count %></p>
     <% end %>
   <% end %>
