@@ -12,16 +12,16 @@
         <p class="user-request-creator"><% @request_user_name = Admin.find(request.user_id) %><%= @request_user_name[:email] %></p>
         <%= link_to "MESSAGES", request, class: "messages-button" %>
         <%= link_to "RESPOND", request, class: "respond-button" %>
-          <div class="row">
-            <div class="col-md-3"><p class="request-date"><%= time_ago_in_words(request.created_at) %></p></div>
-            <div class="col-md-3"><p class="request-date"><%= request.created_at.strftime("%l:%M %p | %d/%m/%y") %></p></div>
-            <div class="col-md-3"><p class="request-date">$ <%= request.price %></p></div>
-            <div class="col-md-3"></div>
-          </div>
+        <div class="row">
+          <div class="col-md-3"><p class="request-date"><%= time_ago_in_words(request.created_at) %></p></div>
+          <div class="col-md-3"><p class="request-date"><%= request.created_at.strftime("%l:%M %p | %d/%m/%y") %></p></div>
+          <div class="col-md-3"><p class="request-date">$ <%= request.price %></p></div>
+          <div class="col-md-3"></div>
+        </div>
         <p><b><%= request.description %></b></p>
         <div class="row">
           <div class="col-md-8">
-            <p><b>Sent 2 days ago:</b></p>
+            <p><b>Sent <%= time_ago_in_words(Chat.where(request_id: request.id).last.created_at) %> ago:</b> <%= Chat.where(request_id: request.id).last.content %></p>
           </div>
           <div class="col-md-4">
             <p><%= link_to "view message history", request %></p>

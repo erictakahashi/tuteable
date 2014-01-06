@@ -1,23 +1,46 @@
 <%= action_title "Request" %>
 
-<div class="show-single-request">
-  <h3 id="title" class="request-title">*<%= @request.title %>*</h3>
-  <p class="user-request-creator"><% @request_user_name = Admin.find(@request.user_id) %><%= @request_user_name[:email] %></p>
-  <p id="category"><%= label_tag :category %>: <%= @request.category %></p>
-  <p id="description"><%= @request.description %></p>
+<div class="single-request">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="user-img"><br> User Image
+      </div>
+    </div>
+    <div class="col-md-10">
+      <h3 id="title" class="request-title">*<%= @request.title %>*</h3>
+      <p class="user-request-creator"><% @request_user_name = Admin.find(@request.user_id) %><%= @request_user_name[:email] %></p>
+      <div class="row">
+        <div class="col-md-3"><p class="request-date"><%= time_ago_in_words(@request.created_at) %></p></div>
+        <div class="col-md-3"><p class="request-date"><%= @request.created_at.strftime("%l:%M %p | %d/%m/%y") %></p></div>
+        <div class="col-md-3"><p class="request-date">$ <%= @request.price %></p></div>
+        <div class="col-md-3"></div>
+      </div>
+      <p><b><%= @request.description %></b></p>
+      <div class="row">
+        <div class="col-md-8">
+          <p><b>Sent <%= time_ago_in_words(Chat.where(request_id: @request.id).last.created_at) %> ago:</b> <%= Chat.where(request_id: @request.id).last.content %></p>
+        </div>
+        <div class="col-md-4">
+          <p><%= link_to "view message history", @request %></p>
+        </div>
+      </div>
 
-  <p><%= link_to "Edit Request", edit_request_path(@request) %></p>
-  <p><%= link_to "Back", requests_path %></p><br>
-  
-  <h4>Chats
-    <% if current_admin.role == "tutor" %>
-      <%= link_to "New Chat", new_request_chat_path(@request), class: "new-request-button" %>
-    <% end %>
-  </h4>
-  <% for chat in @request.chats %>
-    <%= link_to([@request, chat], :class => "single-chat") do %>
-      <p>Tutor: <% @chat_user_name = Admin.find(chat.user_id) %><%= @chat_user_name[:email] %></p>
-      <p>Number of messages: <%= chat.messages.count %></p>
-    <% end %>
-  <% end %>
+      <p><%= link_to "Edit Request", edit_request_path(@request) %></p>
+      <p><%= link_to "Back", requests_path %></p><br>
+
+      <div class="show-single-request">
+        <h4>Chats
+          <% if current_admin.role == "tutor" %>
+            <%= link_to "New Chat", new_request_chat_path(@request), class: "new-request-button" %>
+          <% end %>
+        </h4>
+        <% for chat in @request.chats %>
+          <%= link_to([@request, chat], :class => "single-chat") do %>
+            <p>Tutor: <% @chat_user_name = Admin.find(chat.user_id) %><%= @chat_user_name[:email] %></p>
+            <p>Number of messages: <%= chat.messages.count %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
