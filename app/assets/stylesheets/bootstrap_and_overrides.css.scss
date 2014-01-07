@@ -57,6 +57,16 @@ input[type="submit"] {
       color: rgb(73,92,125);
     }
   }
+
+  .navbar-right {
+    li {
+
+      .glyphicon {
+        font-size: 20px;
+        color: rgb(73,92,125);
+      }
+    }
+  }
 }
 
 .requests-container {
@@ -254,12 +264,43 @@ input[type="submit"] {
     .single-message {
       color: rgb(151,157,164);
     }
+
+    .row {
+      .col-md-2 {
+        text-align: center;
+
+        .user-img {
+          display: inline-block;
+          width: 60px;
+          height: 60px;
+          border: 1px solid rgb(73,92,125);
+          border-radius: 50%;
+          background: rgb(102,174,243);
+        }
+      }
+    }
+  }
+}
+
+.social-icons {
+  margin-top: 100px;
+
+  .container {
+    width: 480px;
+
+    .row {
+      .col-md-2 {
+        img {
+          width: 50px;
+        }
+      }
+    }
   }
 }
 
 .footer-menu {
   width: 100%;
-  margin-top: 120px;
+  margin-top: 50px;
   padding-top: 15px;
   padding-bottom: 15px;
   background: rgb(102,174,243);

@@ -1,28 +1,52 @@
 <%= action_title "Chat" %>
 
 <div class="show-single-request ">
-  <%= link_to "Edit", edit_request_chat_path(@request, @chat) %>
-  <%= link_to "Back", request_chats_path(@request) %>
+  <%= link_to "Edit", edit_request_chat_path(@request, @chat) %><br>
+  <%= link_to "Back", request_chats_path(@request) %><br><br>
 
-  <p id="description" class="single-message"><b>Sent <%= time_ago_in_words(@chat.created_at) %> days ago:</b> <%= @chat.content %></p>
-
-  <% @chat.messages.each do |message| %>
-    <p class="single-message"><b>Sent <%= time_ago_in_words(@chat.created_at) %> days ago:</b> <%= message.content %></p>
-  <% end %>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="user-img"><br> User Image
+      </div>
+    </div>
+    <div class="col-md-10">
+      <p id="description" class="single-message"><b>Sent <%= time_ago_in_words(@chat.created_at) %> days ago:</b> <%= @chat.content %></p>
+    </div>
+  </div>
 
   <br>
 
-  <%= form_for([@request, @chat, @message]) do |f| %>
-    <div class="field">
-      <%= f.text_area :content, placeholder: 'Your message' %>
-    </div>
-      <%= f.hidden_field :user_id, :value => current_admin.id %>
-    <div class="actions">
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
-        <div class="col-md-4"><%= f.submit "SEND" %></div>
+  <% @chat.messages.each do |message| %>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="user-img"><br> User Image
       </div>
     </div>
+    <div class="col-md-10">
+      <p class="single-message"><b>Sent <%= time_ago_in_words(@chat.created_at) %> days ago:</b> <%= message.content %></p>
+    </div>
+  </div>
+  <br>
   <% end %>
+
+  <div class="row">
+  <br>
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-10">
+      <%= form_for([@request, @chat, @message]) do |f| %>
+        <div class="field">
+          <%= f.text_area :content, placeholder: 'Your message' %>
+        </div>
+          <%= f.hidden_field :user_id, :value => current_admin.id %>
+        <div class="actions">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"><%= f.submit "SEND" %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
