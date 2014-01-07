@@ -38,55 +38,48 @@
 <% end %>
 
 <div class="single-request">
-  <div class="row">
+  <div class="row chats-request-page">
     <div class="col-md-2">
-      <div class="user-img"></div>
     </div>
-    <div class="col-md-10">
-      <div class="row chats-request-page">
+    <div class="col-md-10 chats-container">
+      <div class="chats-list">
+      <% @chat_request_page = Chat.find(1) %>
+      <% Chat.find(1).messages.each do |message| %>
+      <div class="row">
         <div class="col-md-2">
+          <div class="user-img"></div>
         </div>
-        <div class="col-md-10 chats-container">
-          <div class="chats-list">
-          <% @chat_request_page = Chat.find(1) %>
-          <% Chat.find(1).messages.each do |message| %>
-          <div class="row">
-            <div class="col-md-2">
-              <div class="user-img"></div>
-            </div>
-            <div class="col-md-10">
-              <p class="single-message"><b>Sent <%= time_ago_in_words(@chat_request_page.created_at) %> days ago:</b> <%= message.content %></p>
-            </div>
-          </div>
-          <br>
-          <% end %>
-          </div>
-          <div>
-            <form>
-              <input class="message-input" type="text" placeholder="Your message">
-              <br>
-              <div class="row">
-                <div class="col-md-4">
-                  <input type="text" placeholder="Change bid">
-                </div>
-                <div class="col-md-4">
-                  <input type="text" placeholder="Change time">
-                </div>
-                <div class="col-md-4">
-                  <input type="submit" value="SEND">
-                </div>
-              </div>
-            </form>
-            <div class="row">
-              <div class="col-md-8">
-              </div>
-              <div class="col-md-4">
-                <p><%= link_to "view message history" %></p>
-              </div>
-            </div>
-          </div>
-        </div> 
+        <div class="col-md-10">
+          <p class="single-message"><b>Sent <%= time_ago_in_words(@chat_request_page.created_at) %> days ago:</b> <%= message.content %></p>
+        </div>
       </div>
-    </div>
+      <br>
+      <% end %>
+      </div>
+      <div>
+        <form>
+          <input class="message-input" type="text" placeholder="Your message">
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <input type="text" placeholder="Change bid">
+            </div>
+            <div class="col-md-4">
+              <input type="text" placeholder="Change time">
+            </div>
+            <div class="col-md-4">
+              <input type="submit" value="SEND">
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-md-8">
+          </div>
+          <div class="col-md-4">
+            <p><%= link_to "view message history" %></p>
+          </div>
+        </div>
+      </div>
+    </div> 
   </div>
 </div>
